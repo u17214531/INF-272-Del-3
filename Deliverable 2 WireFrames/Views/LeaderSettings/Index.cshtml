@@ -1,0 +1,96 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>LeaderSettings</title>
+    <style>
+        body {
+            background-image: url('../../Images/home.jpg');
+        }
+        .flip-card {
+            background-color: transparent;
+            width: 300px;
+            height: 200px;
+            border: 1px solid #f1f1f1;
+            perspective: 1000px;
+        }
+
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+        }
+
+
+        .flip-card-front {
+            background-color: #bbb;
+            color: black;
+        }
+
+        .flip-card-back {
+            background-color: dodgerblue;
+            color: white;
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body>
+    <div>
+    <div class="flip-card">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <img src="~/images 2/Edit.png"/>
+            </div>
+            <div class="flip-card-back" >
+                <h1>@Html.ActionLink("Update", "Update", "CommunityLeader")</h1>
+            </div>
+        </div>
+
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="~/images 2/download.png"/>
+                </div>
+                <div class="flip-card-back">
+                    <h1>@Html.ActionLink("Search", "Search", "CommunityLeader")</h1>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="~/images 2/images.png" />
+                    </div>
+                    <div class="flip-card-back">
+                        <h1>@Html.ActionLink("Delete", "Delete", "CommunityLeader")</h1>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+</body>
+</html>

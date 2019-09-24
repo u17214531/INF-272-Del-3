@@ -1,0 +1,1249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="OnlinePharmacyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="City_ID" />
+          </Key>
+          <Property Name="City_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="City_Name" Type="varchar" MaxLength="90" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Collections">
+          <Key>
+            <PropertyRef Name="Collections_ID" />
+          </Key>
+          <Property Name="Collections_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Collections_Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'OnlinePharmacy.dbo.CollectionsLocation' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CollectionsLocation">
+          <Key>
+            <PropertyRef Name="Location_ID" />
+            <PropertyRef Name="Collections_ID" />
+          </Key>
+          <Property Name="Location_ID" Type="int" Nullable="false" />
+          <Property Name="Collections_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CommunityLeader">
+          <Key>
+            <PropertyRef Name="CommunityLeader_ID" />
+          </Key>
+          <Property Name="CommunityLeader_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CommunityLeader_Name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="CommunityLeader_Surname" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="CommunityLeader_PhoneNumber" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="CommunityLeader_Race" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Village_ID" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'OnlinePharmacy.dbo.CommunityLeaderCollections' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CommunityLeaderCollections">
+          <Key>
+            <PropertyRef Name="CommunityLeader_ID" />
+            <PropertyRef Name="Collections_ID" />
+          </Key>
+          <Property Name="CommunityLeader_ID" Type="int" Nullable="false" />
+          <Property Name="Collections_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Consultation">
+          <Key>
+            <PropertyRef Name="Consultation_ID" />
+          </Key>
+          <Property Name="Consultation_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Consultation_Date" Type="date" Nullable="false" />
+          <Property Name="MedicalPracticioner_ID" Type="int" Nullable="false" />
+          <Property Name="Patient_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Country_ID" />
+          </Key>
+          <Property Name="Country_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Country_Name" Type="varchar" MaxLength="90" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="Doctor_ID" />
+          </Key>
+          <Property Name="Doctor_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Doctor_Name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Doctor_Surname" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Doctor_Email" Type="varchar" MaxLength="320" Nullable="false" />
+          <Property Name="Doctor_PhoneNumber" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Gender_ID" />
+          </Key>
+          <Property Name="Gender_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Gender_Type" Type="varchar" MaxLength="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LeaderType">
+          <Key>
+            <PropertyRef Name="LeaderType_ID" />
+          </Key>
+          <Property Name="LeaderType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LeaderType_Position" Type="varchar" MaxLength="90" />
+          <Property Name="CommunityLeader_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Location_ID" />
+          </Key>
+          <Property Name="Location_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LocationType_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="LocationType">
+          <Key>
+            <PropertyRef Name="LocationType_ID" />
+          </Key>
+          <Property Name="LocationType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LocationType_Description" Type="varchar" MaxLength="90" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MedicalPractitioner">
+          <Key>
+            <PropertyRef Name="MedicalPractitioner_ID" />
+          </Key>
+          <Property Name="MedicalPractitioner_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Doctor_ID" Type="int" />
+          <Property Name="Nurse_ID" Type="int" Nullable="false" />
+          <Property Name="MedicalPractitioner_Name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="MedicalPractitioner_Surname" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="MedicalPractitioner_Title" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MedicalRecord">
+          <Key>
+            <PropertyRef Name="MedicalRecord_ID" />
+          </Key>
+          <Property Name="MedicalRecord_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Patient_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Medication">
+          <Key>
+            <PropertyRef Name="Medication_ID" />
+          </Key>
+          <Property Name="Medication_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Medication_Type" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'OnlinePharmacy.dbo.medicationLocation' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="medicationLocation">
+          <Key>
+            <PropertyRef Name="Location_ID" />
+            <PropertyRef Name="Medication_ID" />
+          </Key>
+          <Property Name="Location_ID" Type="int" Nullable="false" />
+          <Property Name="Medication_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Nurse">
+          <Key>
+            <PropertyRef Name="Nurse_ID" />
+          </Key>
+          <Property Name="Nurse_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nurse_Name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Nurse_Surname" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Nurse_Email" Type="varchar" MaxLength="320" Nullable="false" />
+          <Property Name="Nurse_PhoneNumber" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="Patient_ID" />
+          </Key>
+          <Property Name="Patient_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Patient_Name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Patient_Surname" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Patient_PhoneNumber" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Patient_IDNumber" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="Patient_Race" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Gender_ID" Type="int" />
+          <Property Name="City_ID" Type="int" />
+          <Property Name="Village_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Prescription">
+          <Key>
+            <PropertyRef Name="Prescription_ID" />
+          </Key>
+          <Property Name="Prescription_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Prescription_Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PrescriptionLine">
+          <Key>
+            <PropertyRef Name="PrescriptionLine_ID" />
+          </Key>
+          <Property Name="PrescriptionLine_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PrescriptionLine_Quantity" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Prescription_ID" Type="int" Nullable="false" />
+          <Property Name="Medication_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="Region_ID" />
+          </Key>
+          <Property Name="Region_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Region_Name" Type="varchar" MaxLength="90" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="Village">
+          <Key>
+            <PropertyRef Name="Village_ID" />
+          </Key>
+          <Property Name="Village_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Village_Name" Type="varchar" MaxLength="90" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Collectio__Colle__440B1D61">
+          <End Role="Collections" Type="Self.Collections" Multiplicity="1" />
+          <End Role="CollectionsLocation" Type="Self.CollectionsLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Collections">
+              <PropertyRef Name="Collections_ID" />
+            </Principal>
+            <Dependent Role="CollectionsLocation">
+              <PropertyRef Name="Collections_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Collectio__Locat__4316F928">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="CollectionsLocation" Type="Self.CollectionsLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Location_ID" />
+            </Principal>
+            <Dependent Role="CollectionsLocation">
+              <PropertyRef Name="Location_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Community__Colle__46E78A0C">
+          <End Role="Collections" Type="Self.Collections" Multiplicity="1" />
+          <End Role="CommunityLeaderCollections" Type="Self.CommunityLeaderCollections" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Collections">
+              <PropertyRef Name="Collections_ID" />
+            </Principal>
+            <Dependent Role="CommunityLeaderCollections">
+              <PropertyRef Name="Collections_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Community__Commu__45F365D3">
+          <End Role="CommunityLeader" Type="Self.CommunityLeader" Multiplicity="1" />
+          <End Role="CommunityLeaderCollections" Type="Self.CommunityLeaderCollections" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommunityLeader">
+              <PropertyRef Name="CommunityLeader_ID" />
+            </Principal>
+            <Dependent Role="CommunityLeaderCollections">
+              <PropertyRef Name="CommunityLeader_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Community__Villa__21B6055D">
+          <End Role="Village" Type="Self.Village" Multiplicity="0..1" />
+          <End Role="CommunityLeader" Type="Self.CommunityLeader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Village">
+              <PropertyRef Name="Village_ID" />
+            </Principal>
+            <Dependent Role="CommunityLeader">
+              <PropertyRef Name="Village_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Consultat__Medic__2F10007B">
+          <End Role="MedicalPractitioner" Type="Self.MedicalPractitioner" Multiplicity="1" />
+          <End Role="Consultation" Type="Self.Consultation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MedicalPractitioner">
+              <PropertyRef Name="MedicalPractitioner_ID" />
+            </Principal>
+            <Dependent Role="Consultation">
+              <PropertyRef Name="MedicalPracticioner_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Consultat__Patie__300424B4">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="0..1" />
+          <End Role="Consultation" Type="Self.Consultation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="Patient_ID" />
+            </Principal>
+            <Dependent Role="Consultation">
+              <PropertyRef Name="Patient_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LeaderTyp__Commu__24927208">
+          <End Role="CommunityLeader" Type="Self.CommunityLeader" Multiplicity="0..1" />
+          <End Role="LeaderType" Type="Self.LeaderType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommunityLeader">
+              <PropertyRef Name="CommunityLeader_ID" />
+            </Principal>
+            <Dependent Role="LeaderType">
+              <PropertyRef Name="CommunityLeader_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Location__Locati__3C69FB99">
+          <End Role="LocationType" Type="Self.LocationType" Multiplicity="0..1" />
+          <End Role="Location" Type="Self.Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LocationType">
+              <PropertyRef Name="LocationType_ID" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="LocationType_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MedicalPr__Docto__2B3F6F97">
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="0..1" />
+          <End Role="MedicalPractitioner" Type="Self.MedicalPractitioner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="Doctor_ID" />
+            </Principal>
+            <Dependent Role="MedicalPractitioner">
+              <PropertyRef Name="Doctor_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MedicalPr__Nurse__2C3393D0">
+          <End Role="Nurse" Type="Self.Nurse" Multiplicity="1" />
+          <End Role="MedicalPractitioner" Type="Self.MedicalPractitioner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nurse">
+              <PropertyRef Name="Nurse_ID" />
+            </Principal>
+            <Dependent Role="MedicalPractitioner">
+              <PropertyRef Name="Nurse_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MedicalRe__Patie__1ED998B2">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="0..1" />
+          <End Role="MedicalRecord" Type="Self.MedicalRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="Patient_ID" />
+            </Principal>
+            <Dependent Role="MedicalRecord">
+              <PropertyRef Name="Patient_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__medicatio__Locat__3E52440B">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="medicationLocation" Type="Self.medicationLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Location_ID" />
+            </Principal>
+            <Dependent Role="medicationLocation">
+              <PropertyRef Name="Location_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__medicatio__Medic__3F466844">
+          <End Role="Medication" Type="Self.Medication" Multiplicity="1" />
+          <End Role="medicationLocation" Type="Self.medicationLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medication">
+              <PropertyRef Name="Medication_ID" />
+            </Principal>
+            <Dependent Role="medicationLocation">
+              <PropertyRef Name="Medication_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Patient__City_ID__1B0907CE">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="Patient" Type="Self.Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="City_ID" />
+            </Principal>
+            <Dependent Role="Patient">
+              <PropertyRef Name="City_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Patient__Gender___1A14E395">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+          <End Role="Patient" Type="Self.Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Gender_ID" />
+            </Principal>
+            <Dependent Role="Patient">
+              <PropertyRef Name="Gender_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Patient__Village__1BFD2C07">
+          <End Role="Village" Type="Self.Village" Multiplicity="0..1" />
+          <End Role="Patient" Type="Self.Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Village">
+              <PropertyRef Name="Village_ID" />
+            </Principal>
+            <Dependent Role="Patient">
+              <PropertyRef Name="Village_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Prescript__Medic__37A5467C">
+          <End Role="Medication" Type="Self.Medication" Multiplicity="0..1" />
+          <End Role="PrescriptionLine" Type="Self.PrescriptionLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medication">
+              <PropertyRef Name="Medication_ID" />
+            </Principal>
+            <Dependent Role="PrescriptionLine">
+              <PropertyRef Name="Medication_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Prescript__Presc__36B12243">
+          <End Role="Prescription" Type="Self.Prescription" Multiplicity="1" />
+          <End Role="PrescriptionLine" Type="Self.PrescriptionLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prescription">
+              <PropertyRef Name="Prescription_ID" />
+            </Principal>
+            <Dependent Role="PrescriptionLine">
+              <PropertyRef Name="Prescription_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OnlinePharmacyModelStoreContainer">
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Collections" EntityType="Self.Collections" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommunityLeader" EntityType="Self.CommunityLeader" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Consultation" EntityType="Self.Consultation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Doctor" EntityType="Self.Doctor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LeaderType" EntityType="Self.LeaderType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LocationType" EntityType="Self.LocationType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MedicalPractitioner" EntityType="Self.MedicalPractitioner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MedicalRecord" EntityType="Self.MedicalRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Medication" EntityType="Self.Medication" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nurse" EntityType="Self.Nurse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prescription" EntityType="Self.Prescription" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PrescriptionLine" EntityType="Self.PrescriptionLine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Village" EntityType="Self.Village" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CollectionsLocation" EntityType="Self.CollectionsLocation" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CollectionsLocation].[Location_ID] AS [Location_ID], 
+    [CollectionsLocation].[Collections_ID] AS [Collections_ID]
+    FROM [dbo].[CollectionsLocation] AS [CollectionsLocation]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="CommunityLeaderCollections" EntityType="Self.CommunityLeaderCollections" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CommunityLeaderCollections].[CommunityLeader_ID] AS [CommunityLeader_ID], 
+    [CommunityLeaderCollections].[Collections_ID] AS [Collections_ID]
+    FROM [dbo].[CommunityLeaderCollections] AS [CommunityLeaderCollections]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="medicationLocation" EntityType="Self.medicationLocation" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [medicationLocation].[Location_ID] AS [Location_ID], 
+    [medicationLocation].[Medication_ID] AS [Medication_ID]
+    FROM [dbo].[medicationLocation] AS [medicationLocation]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Collectio__Colle__440B1D61" Association="Self.FK__Collectio__Colle__440B1D61">
+            <End Role="Collections" EntitySet="Collections" />
+            <End Role="CollectionsLocation" EntitySet="CollectionsLocation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Collectio__Locat__4316F928" Association="Self.FK__Collectio__Locat__4316F928">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="CollectionsLocation" EntitySet="CollectionsLocation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Community__Colle__46E78A0C" Association="Self.FK__Community__Colle__46E78A0C">
+            <End Role="Collections" EntitySet="Collections" />
+            <End Role="CommunityLeaderCollections" EntitySet="CommunityLeaderCollections" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Community__Commu__45F365D3" Association="Self.FK__Community__Commu__45F365D3">
+            <End Role="CommunityLeader" EntitySet="CommunityLeader" />
+            <End Role="CommunityLeaderCollections" EntitySet="CommunityLeaderCollections" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Community__Villa__21B6055D" Association="Self.FK__Community__Villa__21B6055D">
+            <End Role="Village" EntitySet="Village" />
+            <End Role="CommunityLeader" EntitySet="CommunityLeader" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Consultat__Medic__2F10007B" Association="Self.FK__Consultat__Medic__2F10007B">
+            <End Role="MedicalPractitioner" EntitySet="MedicalPractitioner" />
+            <End Role="Consultation" EntitySet="Consultation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Consultat__Patie__300424B4" Association="Self.FK__Consultat__Patie__300424B4">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="Consultation" EntitySet="Consultation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LeaderTyp__Commu__24927208" Association="Self.FK__LeaderTyp__Commu__24927208">
+            <End Role="CommunityLeader" EntitySet="CommunityLeader" />
+            <End Role="LeaderType" EntitySet="LeaderType" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Location__Locati__3C69FB99" Association="Self.FK__Location__Locati__3C69FB99">
+            <End Role="LocationType" EntitySet="LocationType" />
+            <End Role="Location" EntitySet="Location" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MedicalPr__Docto__2B3F6F97" Association="Self.FK__MedicalPr__Docto__2B3F6F97">
+            <End Role="Doctor" EntitySet="Doctor" />
+            <End Role="MedicalPractitioner" EntitySet="MedicalPractitioner" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MedicalPr__Nurse__2C3393D0" Association="Self.FK__MedicalPr__Nurse__2C3393D0">
+            <End Role="Nurse" EntitySet="Nurse" />
+            <End Role="MedicalPractitioner" EntitySet="MedicalPractitioner" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MedicalRe__Patie__1ED998B2" Association="Self.FK__MedicalRe__Patie__1ED998B2">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="MedicalRecord" EntitySet="MedicalRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK__medicatio__Locat__3E52440B" Association="Self.FK__medicatio__Locat__3E52440B">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="medicationLocation" EntitySet="medicationLocation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__medicatio__Medic__3F466844" Association="Self.FK__medicatio__Medic__3F466844">
+            <End Role="Medication" EntitySet="Medication" />
+            <End Role="medicationLocation" EntitySet="medicationLocation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Patient__City_ID__1B0907CE" Association="Self.FK__Patient__City_ID__1B0907CE">
+            <End Role="City" EntitySet="City" />
+            <End Role="Patient" EntitySet="Patient" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Patient__Gender___1A14E395" Association="Self.FK__Patient__Gender___1A14E395">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Patient" EntitySet="Patient" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Patient__Village__1BFD2C07" Association="Self.FK__Patient__Village__1BFD2C07">
+            <End Role="Village" EntitySet="Village" />
+            <End Role="Patient" EntitySet="Patient" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Prescript__Medic__37A5467C" Association="Self.FK__Prescript__Medic__37A5467C">
+            <End Role="Medication" EntitySet="Medication" />
+            <End Role="PrescriptionLine" EntitySet="PrescriptionLine" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Prescript__Presc__36B12243" Association="Self.FK__Prescript__Presc__36B12243">
+            <End Role="Prescription" EntitySet="Prescription" />
+            <End Role="PrescriptionLine" EntitySet="PrescriptionLine" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OnlinePharmacyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="City_ID" />
+          </Key>
+          <Property Name="City_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="City_Name" Type="String" MaxLength="90" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Patients" Relationship="Self.FK__Patient__City_ID__1B0907CE" FromRole="City" ToRole="Patient" />
+        </EntityType>
+        <EntityType Name="Collection">
+          <Key>
+            <PropertyRef Name="Collections_ID" />
+          </Key>
+          <Property Name="Collections_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Collections_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Locations" Relationship="Self.CollectionsLocation" FromRole="Collections" ToRole="Location" />
+          <NavigationProperty Name="CommunityLeaders" Relationship="Self.CommunityLeaderCollections" FromRole="Collections" ToRole="CommunityLeader" />
+        </EntityType>
+        <EntityType Name="CommunityLeader">
+          <Key>
+            <PropertyRef Name="CommunityLeader_ID" />
+          </Key>
+          <Property Name="CommunityLeader_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CommunityLeader_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CommunityLeader_Surname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CommunityLeader_PhoneNumber" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="CommunityLeader_Race" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Village_ID" Type="Int32" />
+          <NavigationProperty Name="Village" Relationship="Self.FK__Community__Villa__21B6055D" FromRole="CommunityLeader" ToRole="Village" />
+          <NavigationProperty Name="LeaderTypes" Relationship="Self.FK__LeaderTyp__Commu__24927208" FromRole="CommunityLeader" ToRole="LeaderType" />
+          <NavigationProperty Name="Collections" Relationship="Self.CommunityLeaderCollections" FromRole="CommunityLeader" ToRole="Collections" />
+        </EntityType>
+        <EntityType Name="Consultation">
+          <Key>
+            <PropertyRef Name="Consultation_ID" />
+          </Key>
+          <Property Name="Consultation_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Consultation_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="MedicalPracticioner_ID" Type="Int32" Nullable="false" />
+          <Property Name="Patient_ID" Type="Int32" />
+          <NavigationProperty Name="MedicalPractitioner" Relationship="Self.FK__Consultat__Medic__2F10007B" FromRole="Consultation" ToRole="MedicalPractitioner" />
+          <NavigationProperty Name="Patient" Relationship="Self.FK__Consultat__Patie__300424B4" FromRole="Consultation" ToRole="Patient" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Country_ID" />
+          </Key>
+          <Property Name="Country_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Country_Name" Type="String" MaxLength="90" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="Doctor_ID" />
+          </Key>
+          <Property Name="Doctor_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Doctor_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Doctor_Surname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Doctor_Email" Type="String" MaxLength="320" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Doctor_PhoneNumber" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <NavigationProperty Name="MedicalPractitioners" Relationship="Self.FK__MedicalPr__Docto__2B3F6F97" FromRole="Doctor" ToRole="MedicalPractitioner" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Gender_ID" />
+          </Key>
+          <Property Name="Gender_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Gender_Type" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Patients" Relationship="Self.FK__Patient__Gender___1A14E395" FromRole="Gender" ToRole="Patient" />
+        </EntityType>
+        <EntityType Name="LeaderType">
+          <Key>
+            <PropertyRef Name="LeaderType_ID" />
+          </Key>
+          <Property Name="LeaderType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LeaderType_Position" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
+          <Property Name="CommunityLeader_ID" Type="Int32" />
+          <NavigationProperty Name="CommunityLeader" Relationship="Self.FK__LeaderTyp__Commu__24927208" FromRole="LeaderType" ToRole="CommunityLeader" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Location_ID" />
+          </Key>
+          <Property Name="Location_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LocationType_ID" Type="Int32" />
+          <NavigationProperty Name="LocationType" Relationship="Self.FK__Location__Locati__3C69FB99" FromRole="Location" ToRole="LocationType" />
+          <NavigationProperty Name="Collections" Relationship="Self.CollectionsLocation" FromRole="Location" ToRole="Collections" />
+          <NavigationProperty Name="Medications" Relationship="Self.medicationLocation" FromRole="Location" ToRole="Medication" />
+        </EntityType>
+        <EntityType Name="LocationType">
+          <Key>
+            <PropertyRef Name="LocationType_ID" />
+          </Key>
+          <Property Name="LocationType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LocationType_Description" Type="String" MaxLength="90" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Locations" Relationship="Self.FK__Location__Locati__3C69FB99" FromRole="LocationType" ToRole="Location" />
+        </EntityType>
+        <EntityType Name="MedicalPractitioner">
+          <Key>
+            <PropertyRef Name="MedicalPractitioner_ID" />
+          </Key>
+          <Property Name="MedicalPractitioner_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Doctor_ID" Type="Int32" />
+          <Property Name="Nurse_ID" Type="Int32" Nullable="false" />
+          <Property Name="MedicalPractitioner_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MedicalPractitioner_Surname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MedicalPractitioner_Title" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Consultations" Relationship="Self.FK__Consultat__Medic__2F10007B" FromRole="MedicalPractitioner" ToRole="Consultation" />
+          <NavigationProperty Name="Doctor" Relationship="Self.FK__MedicalPr__Docto__2B3F6F97" FromRole="MedicalPractitioner" ToRole="Doctor" />
+          <NavigationProperty Name="Nurse" Relationship="Self.FK__MedicalPr__Nurse__2C3393D0" FromRole="MedicalPractitioner" ToRole="Nurse" />
+        </EntityType>
+        <EntityType Name="MedicalRecord">
+          <Key>
+            <PropertyRef Name="MedicalRecord_ID" />
+          </Key>
+          <Property Name="MedicalRecord_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Patient_ID" Type="Int32" />
+          <NavigationProperty Name="Patient" Relationship="Self.FK__MedicalRe__Patie__1ED998B2" FromRole="MedicalRecord" ToRole="Patient" />
+        </EntityType>
+        <EntityType Name="Medication">
+          <Key>
+            <PropertyRef Name="Medication_ID" />
+          </Key>
+          <Property Name="Medication_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Medication_Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PrescriptionLines" Relationship="Self.FK__Prescript__Medic__37A5467C" FromRole="Medication" ToRole="PrescriptionLine" />
+          <NavigationProperty Name="Locations" Relationship="Self.medicationLocation" FromRole="Medication" ToRole="Location" />
+        </EntityType>
+        <EntityType Name="Nurse">
+          <Key>
+            <PropertyRef Name="Nurse_ID" />
+          </Key>
+          <Property Name="Nurse_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nurse_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nurse_Surname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nurse_Email" Type="String" MaxLength="320" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nurse_PhoneNumber" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <NavigationProperty Name="MedicalPractitioners" Relationship="Self.FK__MedicalPr__Nurse__2C3393D0" FromRole="Nurse" ToRole="MedicalPractitioner" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="Patient_ID" />
+          </Key>
+          <Property Name="Patient_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Patient_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Patient_Surname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Patient_PhoneNumber" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Patient_IDNumber" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Patient_Race" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Gender_ID" Type="Int32" />
+          <Property Name="City_ID" Type="Int32" />
+          <Property Name="Village_ID" Type="Int32" />
+          <NavigationProperty Name="City" Relationship="Self.FK__Patient__City_ID__1B0907CE" FromRole="Patient" ToRole="City" />
+          <NavigationProperty Name="Consultations" Relationship="Self.FK__Consultat__Patie__300424B4" FromRole="Patient" ToRole="Consultation" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK__Patient__Gender___1A14E395" FromRole="Patient" ToRole="Gender" />
+          <NavigationProperty Name="MedicalRecords" Relationship="Self.FK__MedicalRe__Patie__1ED998B2" FromRole="Patient" ToRole="MedicalRecord" />
+          <NavigationProperty Name="Village" Relationship="Self.FK__Patient__Village__1BFD2C07" FromRole="Patient" ToRole="Village" />
+        </EntityType>
+        <EntityType Name="Prescription">
+          <Key>
+            <PropertyRef Name="Prescription_ID" />
+          </Key>
+          <Property Name="Prescription_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Prescription_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="PrescriptionLines" Relationship="Self.FK__Prescript__Presc__36B12243" FromRole="Prescription" ToRole="PrescriptionLine" />
+        </EntityType>
+        <EntityType Name="PrescriptionLine">
+          <Key>
+            <PropertyRef Name="PrescriptionLine_ID" />
+          </Key>
+          <Property Name="PrescriptionLine_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PrescriptionLine_Quantity" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Prescription_ID" Type="Int32" Nullable="false" />
+          <Property Name="Medication_ID" Type="Int32" />
+          <NavigationProperty Name="Medication" Relationship="Self.FK__Prescript__Medic__37A5467C" FromRole="PrescriptionLine" ToRole="Medication" />
+          <NavigationProperty Name="Prescription" Relationship="Self.FK__Prescript__Presc__36B12243" FromRole="PrescriptionLine" ToRole="Prescription" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="Region_ID" />
+          </Key>
+          <Property Name="Region_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Region_Name" Type="String" MaxLength="90" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Village">
+          <Key>
+            <PropertyRef Name="Village_ID" />
+          </Key>
+          <Property Name="Village_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Village_Name" Type="String" MaxLength="90" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CommunityLeaders" Relationship="Self.FK__Community__Villa__21B6055D" FromRole="Village" ToRole="CommunityLeader" />
+          <NavigationProperty Name="Patients" Relationship="Self.FK__Patient__Village__1BFD2C07" FromRole="Village" ToRole="Patient" />
+        </EntityType>
+        <Association Name="FK__Patient__City_ID__1B0907CE">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="Patient" Type="Self.Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="City_ID" />
+            </Principal>
+            <Dependent Role="Patient">
+              <PropertyRef Name="City_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Community__Villa__21B6055D">
+          <End Role="Village" Type="Self.Village" Multiplicity="0..1" />
+          <End Role="CommunityLeader" Type="Self.CommunityLeader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Village">
+              <PropertyRef Name="Village_ID" />
+            </Principal>
+            <Dependent Role="CommunityLeader">
+              <PropertyRef Name="Village_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LeaderTyp__Commu__24927208">
+          <End Role="CommunityLeader" Type="Self.CommunityLeader" Multiplicity="0..1" />
+          <End Role="LeaderType" Type="Self.LeaderType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommunityLeader">
+              <PropertyRef Name="CommunityLeader_ID" />
+            </Principal>
+            <Dependent Role="LeaderType">
+              <PropertyRef Name="CommunityLeader_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Consultat__Medic__2F10007B">
+          <End Role="MedicalPractitioner" Type="Self.MedicalPractitioner" Multiplicity="1" />
+          <End Role="Consultation" Type="Self.Consultation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MedicalPractitioner">
+              <PropertyRef Name="MedicalPractitioner_ID" />
+            </Principal>
+            <Dependent Role="Consultation">
+              <PropertyRef Name="MedicalPracticioner_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Consultat__Patie__300424B4">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="0..1" />
+          <End Role="Consultation" Type="Self.Consultation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="Patient_ID" />
+            </Principal>
+            <Dependent Role="Consultation">
+              <PropertyRef Name="Patient_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MedicalPr__Docto__2B3F6F97">
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="0..1" />
+          <End Role="MedicalPractitioner" Type="Self.MedicalPractitioner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="Doctor_ID" />
+            </Principal>
+            <Dependent Role="MedicalPractitioner">
+              <PropertyRef Name="Doctor_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Patient__Gender___1A14E395">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+          <End Role="Patient" Type="Self.Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Gender_ID" />
+            </Principal>
+            <Dependent Role="Patient">
+              <PropertyRef Name="Gender_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Location__Locati__3C69FB99">
+          <End Role="LocationType" Type="Self.LocationType" Multiplicity="0..1" />
+          <End Role="Location" Type="Self.Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LocationType">
+              <PropertyRef Name="LocationType_ID" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="LocationType_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MedicalPr__Nurse__2C3393D0">
+          <End Role="Nurse" Type="Self.Nurse" Multiplicity="1" />
+          <End Role="MedicalPractitioner" Type="Self.MedicalPractitioner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nurse">
+              <PropertyRef Name="Nurse_ID" />
+            </Principal>
+            <Dependent Role="MedicalPractitioner">
+              <PropertyRef Name="Nurse_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MedicalRe__Patie__1ED998B2">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="0..1" />
+          <End Role="MedicalRecord" Type="Self.MedicalRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="Patient_ID" />
+            </Principal>
+            <Dependent Role="MedicalRecord">
+              <PropertyRef Name="Patient_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Prescript__Medic__37A5467C">
+          <End Role="Medication" Type="Self.Medication" Multiplicity="0..1" />
+          <End Role="PrescriptionLine" Type="Self.PrescriptionLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medication">
+              <PropertyRef Name="Medication_ID" />
+            </Principal>
+            <Dependent Role="PrescriptionLine">
+              <PropertyRef Name="Medication_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Patient__Village__1BFD2C07">
+          <End Role="Village" Type="Self.Village" Multiplicity="0..1" />
+          <End Role="Patient" Type="Self.Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Village">
+              <PropertyRef Name="Village_ID" />
+            </Principal>
+            <Dependent Role="Patient">
+              <PropertyRef Name="Village_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Prescript__Presc__36B12243">
+          <End Role="Prescription" Type="Self.Prescription" Multiplicity="1" />
+          <End Role="PrescriptionLine" Type="Self.PrescriptionLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prescription">
+              <PropertyRef Name="Prescription_ID" />
+            </Principal>
+            <Dependent Role="PrescriptionLine">
+              <PropertyRef Name="Prescription_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CollectionsLocation">
+          <End Role="Collections" Type="Self.Collection" Multiplicity="*" />
+          <End Role="Location" Type="Self.Location" Multiplicity="*" />
+        </Association>
+        <Association Name="CommunityLeaderCollections">
+          <End Role="Collections" Type="Self.Collection" Multiplicity="*" />
+          <End Role="CommunityLeader" Type="Self.CommunityLeader" Multiplicity="*" />
+        </Association>
+        <Association Name="medicationLocation">
+          <End Role="Location" Type="Self.Location" Multiplicity="*" />
+          <End Role="Medication" Type="Self.Medication" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="OnlinePharmacyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <EntitySet Name="Collections" EntityType="Self.Collection" />
+          <EntitySet Name="CommunityLeaders" EntityType="Self.CommunityLeader" />
+          <EntitySet Name="Consultations" EntityType="Self.Consultation" />
+          <EntitySet Name="Countries" EntityType="Self.Country" />
+          <EntitySet Name="Doctors" EntityType="Self.Doctor" />
+          <EntitySet Name="Genders" EntityType="Self.Gender" />
+          <EntitySet Name="LeaderTypes" EntityType="Self.LeaderType" />
+          <EntitySet Name="Locations" EntityType="Self.Location" />
+          <EntitySet Name="LocationTypes" EntityType="Self.LocationType" />
+          <EntitySet Name="MedicalPractitioners" EntityType="Self.MedicalPractitioner" />
+          <EntitySet Name="MedicalRecords" EntityType="Self.MedicalRecord" />
+          <EntitySet Name="Medications" EntityType="Self.Medication" />
+          <EntitySet Name="Nurses" EntityType="Self.Nurse" />
+          <EntitySet Name="Patients" EntityType="Self.Patient" />
+          <EntitySet Name="Prescriptions" EntityType="Self.Prescription" />
+          <EntitySet Name="PrescriptionLines" EntityType="Self.PrescriptionLine" />
+          <EntitySet Name="Regions" EntityType="Self.Region" />
+          <EntitySet Name="Villages" EntityType="Self.Village" />
+          <AssociationSet Name="FK__Patient__City_ID__1B0907CE" Association="Self.FK__Patient__City_ID__1B0907CE">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="Patient" EntitySet="Patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Community__Villa__21B6055D" Association="Self.FK__Community__Villa__21B6055D">
+            <End Role="Village" EntitySet="Villages" />
+            <End Role="CommunityLeader" EntitySet="CommunityLeaders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LeaderTyp__Commu__24927208" Association="Self.FK__LeaderTyp__Commu__24927208">
+            <End Role="CommunityLeader" EntitySet="CommunityLeaders" />
+            <End Role="LeaderType" EntitySet="LeaderTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Consultat__Medic__2F10007B" Association="Self.FK__Consultat__Medic__2F10007B">
+            <End Role="MedicalPractitioner" EntitySet="MedicalPractitioners" />
+            <End Role="Consultation" EntitySet="Consultations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Consultat__Patie__300424B4" Association="Self.FK__Consultat__Patie__300424B4">
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="Consultation" EntitySet="Consultations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MedicalPr__Docto__2B3F6F97" Association="Self.FK__MedicalPr__Docto__2B3F6F97">
+            <End Role="Doctor" EntitySet="Doctors" />
+            <End Role="MedicalPractitioner" EntitySet="MedicalPractitioners" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Patient__Gender___1A14E395" Association="Self.FK__Patient__Gender___1A14E395">
+            <End Role="Gender" EntitySet="Genders" />
+            <End Role="Patient" EntitySet="Patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Location__Locati__3C69FB99" Association="Self.FK__Location__Locati__3C69FB99">
+            <End Role="LocationType" EntitySet="LocationTypes" />
+            <End Role="Location" EntitySet="Locations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MedicalPr__Nurse__2C3393D0" Association="Self.FK__MedicalPr__Nurse__2C3393D0">
+            <End Role="Nurse" EntitySet="Nurses" />
+            <End Role="MedicalPractitioner" EntitySet="MedicalPractitioners" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MedicalRe__Patie__1ED998B2" Association="Self.FK__MedicalRe__Patie__1ED998B2">
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="MedicalRecord" EntitySet="MedicalRecords" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Prescript__Medic__37A5467C" Association="Self.FK__Prescript__Medic__37A5467C">
+            <End Role="Medication" EntitySet="Medications" />
+            <End Role="PrescriptionLine" EntitySet="PrescriptionLines" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Patient__Village__1BFD2C07" Association="Self.FK__Patient__Village__1BFD2C07">
+            <End Role="Village" EntitySet="Villages" />
+            <End Role="Patient" EntitySet="Patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Prescript__Presc__36B12243" Association="Self.FK__Prescript__Presc__36B12243">
+            <End Role="Prescription" EntitySet="Prescriptions" />
+            <End Role="PrescriptionLine" EntitySet="PrescriptionLines" />
+          </AssociationSet>
+          <AssociationSet Name="CollectionsLocation" Association="Self.CollectionsLocation">
+            <End Role="Collections" EntitySet="Collections" />
+            <End Role="Location" EntitySet="Locations" />
+          </AssociationSet>
+          <AssociationSet Name="CommunityLeaderCollections" Association="Self.CommunityLeaderCollections">
+            <End Role="Collections" EntitySet="Collections" />
+            <End Role="CommunityLeader" EntitySet="CommunityLeaders" />
+          </AssociationSet>
+          <AssociationSet Name="medicationLocation" Association="Self.medicationLocation">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Medication" EntitySet="Medications" />
+          </AssociationSet>
+          <EntitySet Name="UserProfiles" EntityType="OnlinePharmacyModel.UserProfile" />
+        </EntityContainer>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OnlinePharmacyModelStoreContainer" CdmEntityContainer="OnlinePharmacyEntities">
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="OnlinePharmacyModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="City_ID" ColumnName="City_ID" />
+                <ScalarProperty Name="City_Name" ColumnName="City_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Collections">
+            <EntityTypeMapping TypeName="OnlinePharmacyModel.Collection">
+              <MappingFragment StoreEntitySet="Collections">
+                <ScalarProperty Name="Collections_ID" ColumnName="Collections_ID" />
+                <ScalarProperty Name="Collections_Date" ColumnName="Collections_Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommunityLeaders">
+            <EntityTypeMapping TypeName="OnlinePharmacyModel.CommunityLeader">
+              <MappingFragment StoreEntitySet="CommunityLeader">
+                <ScalarProperty Name="CommunityLeader_ID" ColumnName="CommunityLeader_ID" />
+                <ScalarProperty Name="CommunityLeader_Name" ColumnName="CommunityLeader_Name" />
+                <ScalarProperty Name="CommunityLeader_Surname" ColumnName="CommunityLeader_Surname" />
+                <ScalarProperty Name="CommunityLeader_PhoneNumber" ColumnName="CommunityLeader_PhoneNumber" />
+                <ScalarProperty Name="CommunityLeader_Race" ColumnName="CommunityLeader_Race" />
+                <ScalarProperty Name="Village_ID" ColumnName="Village_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Consultations">
+            <EntityTypeMapping TypeName="OnlinePharmacyModel.Consultation">
+              <MappingFragment StoreEntitySet="Consultation">
+                <ScalarProperty Name="Consultation_ID" ColumnName="Consultation_ID" />
+                <ScalarProperty Name="Consultation_Date" ColumnName="Consultation_Date" />
+                <ScalarProperty Name="MedicalPracticioner_ID" ColumnName="MedicalPracticioner_ID" />
+                <ScalarProperty Name="Patient_ID" ColumnName="Patient_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="OnlinePharmacyModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+                <ScalarProperty Name="Country_Name" ColumnName="Country_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doctors">
+            <EntityTypeMapping TypeName="OnlinePharmacyModel.Doctor">
+              <MappingFragment StoreEntitySet="Doctor">
+                <ScalarProperty Name="Doctor_ID" ColumnName="Doctor_ID" />
+                <ScalarProperty Name="Doctor_Name" ColumnName="Doctor_Name" />
+                <ScalarProperty Name="Doctor_Surname" ColumnName="Doctor_Surname" />
+                <ScalarProperty Name="Doctor_Email" ColumnName="Doctor_Email" />
+                <ScalarProperty Name="Doctor_PhoneNumber" ColumnName="Doctor_PhoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genders">
+            <EntityTypeMapping TypeName="OnlinePharmacyModel.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="Gender_ID" ColumnName="Gender_ID" />
+                <ScalarProperty Name="Gender_Type" ColumnName="Gender_Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LeaderTypes">
+            <EntityTypeMapping TypeName="OnlinePharmacyModel.LeaderType">
+              <MappingFragment StoreEntitySet="LeaderType">
+                <ScalarProperty Name="LeaderType_ID" ColumnName="LeaderType_ID" />
+                <ScalarProperty Name="LeaderType_Position" ColumnName="LeaderType_Position" />
+                <ScalarProperty Name="CommunityLeader_ID" ColumnName="CommunityLeader_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="OnlinePharmacyModel.Location">
+              <MappingFragment StoreEntitySet="Location">
+                <ScalarProperty Name="Location_ID" ColumnName="Location_ID" />
+                <ScalarProperty Name="LocationType_ID" ColumnName="LocationType_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LocationTypes">
+            <EntityTypeMapping TypeName="OnlinePharmacyModel.LocationType">
+              <MappingFragment StoreEntitySet="LocationType">
+                <ScalarProperty Name="LocationType_ID" ColumnName="LocationType_ID" />
+                <ScalarProperty Name="LocationType_Description" ColumnName="LocationType_Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MedicalPractitioners">
+            <EntityTypeMapping TypeName="OnlinePharmacyModel.MedicalPractitioner">
+              <MappingFragment StoreEntitySet="MedicalPractitioner">
+                <ScalarProperty Name="MedicalPractitioner_ID" ColumnName="MedicalPractitioner_ID" />
+                <ScalarProperty Name="Doctor_ID" ColumnName="Doctor_ID" />
+                <ScalarProperty Name="Nurse_ID" ColumnName="Nurse_ID" />
+                <ScalarProperty Name="MedicalPractitioner_Name" ColumnName="MedicalPractitioner_Name" />
+                <ScalarProperty Name="MedicalPractitioner_Surname" ColumnName="MedicalPractitioner_Surname" />
+                <ScalarProperty Name="MedicalPractitioner_Title" ColumnName="MedicalPractitioner_Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MedicalRecords">
+            <EntityTypeMapping TypeName="OnlinePharmacyModel.MedicalRecord">
+              <MappingFragment StoreEntitySet="MedicalRecord">
+                <ScalarProperty Name="MedicalRecord_ID" ColumnName="MedicalRecord_ID" />
+                <ScalarProperty Name="Patient_ID" ColumnName="Patient_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Medications">
+            <EntityTypeMapping TypeName="OnlinePharmacyModel.Medication">
+              <MappingFragment StoreEntitySet="Medication">
+                <ScalarProperty Name="Medication_ID" ColumnName="Medication_ID" />
+                <ScalarProperty Name="Medication_Type" ColumnName="Medication_Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nurses">
+            <EntityTypeMapping TypeName="OnlinePharmacyModel.Nurse">
+              <MappingFragment StoreEntitySet="Nurse">
+                <ScalarProperty Name="Nurse_ID" ColumnName="Nurse_ID" />
+                <ScalarProperty Name="Nurse_Name" ColumnName="Nurse_Name" />
+                <ScalarProperty Name="Nurse_Surname" ColumnName="Nurse_Surname" />
+                <ScalarProperty Name="Nurse_Email" ColumnName="Nurse_Email" />
+                <ScalarProperty Name="Nurse_PhoneNumber" ColumnName="Nurse_PhoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patients">
+            <EntityTypeMapping TypeName="OnlinePharmacyModel.Patient">
+              <MappingFragment StoreEntitySet="Patient">
+                <ScalarProperty Name="Patient_ID" ColumnName="Patient_ID" />
+                <ScalarProperty Name="Patient_Name" ColumnName="Patient_Name" />
+                <ScalarProperty Name="Patient_Surname" ColumnName="Patient_Surname" />
+                <ScalarProperty Name="Patient_PhoneNumber" ColumnName="Patient_PhoneNumber" />
+                <ScalarProperty Name="Patient_IDNumber" ColumnName="Patient_IDNumber" />
+                <ScalarProperty Name="Patient_Race" ColumnName="Patient_Race" />
+                <ScalarProperty Name="Gender_ID" ColumnName="Gender_ID" />
+                <ScalarProperty Name="City_ID" ColumnName="City_ID" />
+                <ScalarProperty Name="Village_ID" ColumnName="Village_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prescriptions">
+            <EntityTypeMapping TypeName="OnlinePharmacyModel.Prescription">
+              <MappingFragment StoreEntitySet="Prescription">
+                <ScalarProperty Name="Prescription_ID" ColumnName="Prescription_ID" />
+                <ScalarProperty Name="Prescription_Date" ColumnName="Prescription_Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PrescriptionLines">
+            <EntityTypeMapping TypeName="OnlinePharmacyModel.PrescriptionLine">
+              <MappingFragment StoreEntitySet="PrescriptionLine">
+                <ScalarProperty Name="PrescriptionLine_ID" ColumnName="PrescriptionLine_ID" />
+                <ScalarProperty Name="PrescriptionLine_Quantity" ColumnName="PrescriptionLine_Quantity" />
+                <ScalarProperty Name="Prescription_ID" ColumnName="Prescription_ID" />
+                <ScalarProperty Name="Medication_ID" ColumnName="Medication_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Regions">
+            <EntityTypeMapping TypeName="OnlinePharmacyModel.Region">
+              <MappingFragment StoreEntitySet="Region">
+                <ScalarProperty Name="Region_ID" ColumnName="Region_ID" />
+                <ScalarProperty Name="Region_Name" ColumnName="Region_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Villages">
+            <EntityTypeMapping TypeName="OnlinePharmacyModel.Village">
+              <MappingFragment StoreEntitySet="Village">
+                <ScalarProperty Name="Village_ID" ColumnName="Village_ID" />
+                <ScalarProperty Name="Village_Name" ColumnName="Village_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="CollectionsLocation" TypeName="OnlinePharmacyModel.CollectionsLocation" StoreEntitySet="CollectionsLocation">
+            <EndProperty Name="Collections">
+              <ScalarProperty Name="Collections_ID" ColumnName="Collections_ID" />
+            </EndProperty>
+            <EndProperty Name="Location">
+              <ScalarProperty Name="Location_ID" ColumnName="Location_ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="CommunityLeaderCollections" TypeName="OnlinePharmacyModel.CommunityLeaderCollections" StoreEntitySet="CommunityLeaderCollections">
+            <EndProperty Name="Collections">
+              <ScalarProperty Name="Collections_ID" ColumnName="Collections_ID" />
+            </EndProperty>
+            <EndProperty Name="CommunityLeader">
+              <ScalarProperty Name="CommunityLeader_ID" ColumnName="CommunityLeader_ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="medicationLocation" TypeName="OnlinePharmacyModel.medicationLocation" StoreEntitySet="medicationLocation">
+            <EndProperty Name="Location">
+              <ScalarProperty Name="Location_ID" ColumnName="Location_ID" />
+            </EndProperty>
+            <EndProperty Name="Medication">
+              <ScalarProperty Name="Medication_ID" ColumnName="Medication_ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="UserProfiles">
+            <EntityTypeMapping TypeName="OnlinePharmacyModel.UserProfile">
+              <MappingFragment StoreEntitySet="UserProfile">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

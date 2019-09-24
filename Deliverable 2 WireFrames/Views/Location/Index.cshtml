@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Location</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-image: url('../../Images/home.jpg');
+        }
+    </style>
+</head>
+<body>
+    @*<div class="form-group">
+            <input type="text" class="form-input" name="name" id="name" placeholder="Location ID" />
+        </div>*@
+    <label class="label">Location type</label>
+    <div class="dropdown">
+        <select>
+            <option>Police Station</option>
+            <option>Clinic</option>
+            <option>Hospital</option>
+        </select>
+    </div>
+    <label class="label">Location name</label>
+    <div class="form-group">
+        <input type="text" class="form-input" name="name" id="name" placeholder="Location name" />
+    </div>
+    <div>
+        @using (Html.BeginForm("Index", "Homepage"))
+        {
+            <button type="submit" name="Save" class="btn btn-primary">Save</button>
+            <button type="submit" name="Save" class="btn btn-primary">Cancel</button>
+        }
+    </div>
+    @Html.ActionLink("Go back to home", "Index", "Homepage")
+</body>
+</html>

@@ -1,0 +1,81 @@
+﻿
+@{
+    Layout = null;
+}
+
+<h2>Update Patient Information</h2>
+<html>
+<
+    <head>
+        <link href="~/Content/bootstrap.css" rel="stylesheet" />
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+        <style>
+           
+
+            label {
+                color: white;
+            }
+
+            body {
+                background-image: url('../../IMAGES/Proper 3.jpg');
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
+            Signup-content {
+                background: #ffffff;
+                border-radius: 5px;
+                -moz-border-radius: 5px;
+                -webkit-border-radius: 5px;
+                padding: 25px 25px;
+            }
+
+            .container {
+                width: 660px;
+                position: absolute;
+                margin: 0 auto;
+            }
+        </style>
+    </head>
+<body>
+    <div class="container">
+        <div class=" Signup-content">
+            <div class="form-group">
+                <input type="text" class="form-input" name="name" id="name" placeholder=" Patient Name" />
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-input" name="name" id="name" placeholder=" Patient Surname" />
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-input" name="name" id="name" placeholder=" Patient ID Number" />
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-input" name="name" id="name" placeholder="Patient Date Birth" />
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-input" name="name" id="name" placeholder="Patient Gender" />
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-input" name="name" id="name" placeholder="Patient City" />
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-input" name="name" id="name" placeholder="Patient Village" />
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-input" name="name" id="name" placeholder="Patient Race" />
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-input" name="name" id="name" placeholder="Phone Number" />
+            </div>
+
+
+
+            @using (Html.BeginForm("Update", "Patient"))
+            {
+                <input type="submit" name="btnAdd" value="Update Patient" />
+            }
+            @Html.ActionLink("Go back to home", "Index", "Homepage")
+        </div>
+    </div>
+</body>
+</html>

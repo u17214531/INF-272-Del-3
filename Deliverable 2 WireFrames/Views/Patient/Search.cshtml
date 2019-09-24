@@ -1,0 +1,55 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<html>
+
+    <head>
+        <link href="~/Content/bootstrap.css" rel="stylesheet" />
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+        <style>
+           
+
+            body {
+                background-image: url('../../IMAGES/proper 2.jpg');
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
+            Signup-content {
+                background: #ffffff;
+                border-radius: 5px;
+                -moz-border-radius: 5px;
+                -webkit-border-radius: 5px;
+                padding: 25px 25px;
+            }
+
+            .container {
+                width: 660px;
+                position: absolute;
+                margin: 0 auto;
+            }
+        </style>
+    </head>
+<body>
+    <div class="container">
+        <div class=" Signup-content">
+
+            <h2>Search  Patient</h2>
+            <div class="form-group">
+                <input type="text" class="form-input" name="name" id="name" placeholder=" Enter Client ID" />
+
+
+            </div>
+            @using (Html.BeginForm("Search", "Patient"))
+            {
+                <input type="submit" name="btnAdd" value="Search Patient" />
+            }
+            @Html.ActionLink("Go back to home", "Index", "Homepage")
+        </div>
+    </div>
+
+</body>
+</html>

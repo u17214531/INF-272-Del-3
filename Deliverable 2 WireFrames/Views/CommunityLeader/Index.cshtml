@@ -1,0 +1,53 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/style.css" rel="stylesheet" />
+ 
+    <meta name="viewport" content="width=device-width" />
+    <title>Community Leader</title>
+</head>
+<body>
+    <div class="container">
+        <div class="signup-content">
+            <form id="signup-form" class="signup-form">
+                <h2>Leader Profile</h2>
+                <div class="form-group">
+                    <input type="text" class="form-input" name="name" id="name" placeholder=" Name" />
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-input" name="name" id="name" placeholder=" Surname" />
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-input" name="name" id="name" placeholder=" ID Number" />
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-input" name="name" id="name" placeholder="Village name" />
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-input" name="name" id="name" placeholder="Cellphone Number" />
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-input" name="name" id="name" placeholder="Email Address" />
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-input" name="name" id="name" placeholder=" Position" />
+                </div>
+
+                @using (Html.BeginForm("Index", "Homepage"))
+                {
+                    <input type="submit" name="btnAdd" value="Create Leader" />
+                }
+            </form>
+                </div>
+        </div>
+                @Html.ActionLink("Go back to home", "Index", "Homepage")
+</body>
+</html>

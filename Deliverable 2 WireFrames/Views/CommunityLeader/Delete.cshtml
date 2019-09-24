@@ -1,0 +1,38 @@
+﻿
+@{
+    Layout = null;
+}
+
+<h2>Delete Community Leader</h2>
+
+<html>
+
+    <head>
+        <link href="~/Content/bootstrap.css" rel="stylesheet" />
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+        <style>
+         
+
+            label {
+                color: white;
+            }
+
+            body {
+                background-image: url('../../Images/proper 2.jpg');
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        </style>
+    </head>
+<body>
+    <div class="form-group">
+        <input type="text" class="form-input" name="name" id="name" placeholder="Enter Leader ID" />
+    </div>
+    @using (Html.BeginForm("Index", "Homepage"))
+    {
+        <input type="submit" name="btnAdd" value="Delete" />
+    }
+
+    @Html.ActionLink("Go back to home","Index","Homepage")
+</body>
+</html>

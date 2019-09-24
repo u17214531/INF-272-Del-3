@@ -1,0 +1,76 @@
+﻿
+@{
+    Layout = null;
+}
+
+<html>
+ <head>
+        <link href="~/Content/bootstrap.css" rel="stylesheet" />
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+        <style>
+            table td, tr, th, tbody {
+                border: 1.5px solid black;
+            }
+
+            td {
+                color: white;
+            }
+
+            label {
+                color: white;
+            }
+
+            body {
+                background-image: url('../../Images/home.jpg');
+                background-size:cover;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
+            .Signup-content {
+                background: #ffffff;
+                border-radius: 5px;
+                -moz-border-radius: 5px;
+                -webkit-border-radius: 5px;
+                -ms-border-radius: 5px;
+                padding: 25px 25px;
+            }
+
+            .container {
+                width: 660px;
+                position: absolute;
+                margin: 0 auto;
+            }
+        </style>
+    </head>
+<body>
+    <div class="container">
+        <div class=" Signup-content">
+
+            <h2>Update Community leader details</h2>
+            <div class="form-group">
+                <input type="text" class="form-input" name="name" id="name" placeholder="Leader Name" />
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-input" name="name" id="name" placeholder="Leader Surname" />
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-input" name="name" id="name" placeholder="Leader Id Number" />
+            </div>
+            @*<div class="form-group">
+                <input type="text" class="form-input" name="name" id="name" placeholder="Patient ID Number" />
+            </div>*@
+            <div class="form-group">
+                <input type="text" class="form-input" name="name" id="name" placeholder="Leader Village" />
+            </div>
+            @using (Html.BeginForm("Index", "Homepage"))
+            {
+                <input type="submit" name="btnAdd" value="Update Leader Information" />
+            }
+            @Html.ActionLink("Go back to home", "Index", "Homepage")
+        </div>
+    </div>
+
+</body>
+</html>
+

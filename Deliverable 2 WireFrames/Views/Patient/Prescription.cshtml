@@ -1,0 +1,76 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Registration</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="~/style.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="main">
+
+
+            <div class="container">
+                <div class="signup-content">
+                    @*<form id="signup-form" class="signup-form">*@
+                        <h2 class="form-title">Prescription</h2>
+                        <div class="form-group">
+                            <label class="form-control">Name</label>
+                            <input type="text" class="form-input" name="name" id="name" placeholder="Your Name" />
+                        </div>
+                        <label class="form-control">Surname</label>
+                        <div class="form-group">
+                            <input type="email" class="form-input" name="email" id="email" placeholder="Your Surname" />
+                        </div>
+                        <label class="form-control">Cellphone</label>
+                        <div class="form-group">
+                            <input type="email" class="form-input" name="email" id="email" placeholder="Cellphone Number" />
+                        </div>
+                        <label class="form-control">Email(Optional)</label>
+                        <div class="form-group">
+                            <input type="email" class="form-input" name="email" id="email" placeholder="Your Email" />
+                        </div>
+                        <label class="form-control">Address</label>
+                        <div class="form-group">
+                            <input type="email" class="form-input" name="email" id="email" placeholder="Street Adress" />
+                            <input type="email" class="form-input" name="email" id="email" placeholder="Street Adress Line 2" />
+                            <input type="email" class="form-input" name="email" id="email" placeholder="Village" />
+                        </div>
+                        <label class="form-control">Prescription Details</label>
+                        <h3>Medication Details</h3>
+                        <h4>Please type in medication along with dosage information</h4>
+                        <div class="form-group">
+                            <input type="email" class="form-input" name="email" id="email" />
+                        </div>
+                        
+                        <div class="form-group">
+                            @using (Html.BeginForm("Index", "Homepage"))
+                            {
+                                <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Submit" onlick="return confirm('Submit form?')" />
+                            }
+                        </div>
+                    </form>
+                    <p >
+                        @Html.ActionLink("Go to Homepage", "Index", "Homepage")
+                    </p>
+                </div>
+            </div>
+      
+
+    </div>
+
+
+
+
+
+</body>
+</html>
+<script src="~/Scripts/bootstrap.bundle.min.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>

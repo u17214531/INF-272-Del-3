@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="38ec91666baf40908060cbd2204eb49f" Name="Diagram1">
+        <EntityTypeShape EntityType="OnlinePharmacyModel.City" Width="1.5" PointX="3.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlinePharmacyModel.Collection" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlinePharmacyModel.CommunityLeader" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlinePharmacyModel.Consultation" Width="1.5" PointX="8.25" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlinePharmacyModel.Country" Width="1.5" PointX="5.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlinePharmacyModel.Doctor" Width="1.5" PointX="3.75" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlinePharmacyModel.Gender" Width="1.5" PointX="3.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlinePharmacyModel.LeaderType" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlinePharmacyModel.Location" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlinePharmacyModel.LocationType" Width="1.5" PointX="0.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlinePharmacyModel.MedicalPractitioner" Width="1.5" PointX="6" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlinePharmacyModel.MedicalRecord" Width="1.5" PointX="8.625" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlinePharmacyModel.Medication" Width="1.5" PointX="5.25" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlinePharmacyModel.Nurse" Width="1.5" PointX="3.75" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlinePharmacyModel.Patient" Width="1.5" PointX="6" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlinePharmacyModel.Prescription" Width="1.5" PointX="5.25" PointY="26.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlinePharmacyModel.PrescriptionLine" Width="1.5" PointX="7.5" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlinePharmacyModel.Region" Width="1.5" PointX="7.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlinePharmacyModel.Village" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <AssociationConnector Association="OnlinePharmacyModel.FK__Patient__City_ID__1B0907CE" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinePharmacyModel.FK__Community__Villa__21B6055D" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinePharmacyModel.FK__LeaderTyp__Commu__24927208" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinePharmacyModel.FK__Consultat__Medic__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinePharmacyModel.FK__Consultat__Patie__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinePharmacyModel.FK__MedicalPr__Docto__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinePharmacyModel.FK__Patient__Gender___1A14E395" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinePharmacyModel.FK__Location__Locati__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinePharmacyModel.FK__MedicalPr__Nurse__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinePharmacyModel.FK__MedicalRe__Patie__1ED998B2" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinePharmacyModel.FK__Prescript__Medic__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinePharmacyModel.FK__Patient__Village__1BFD2C07" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinePharmacyModel.FK__Prescript__Presc__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinePharmacyModel.CollectionsLocation" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinePharmacyModel.CommunityLeaderCollections" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinePharmacyModel.medicationLocation" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="OnlinePharmacyModel.UserProfile" Width="1.5" PointX="2.875" PointY="9.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
